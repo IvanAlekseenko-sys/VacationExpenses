@@ -9,59 +9,59 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 //!!!ExpenseListImpl
-public class FileExpenseDao implements ExpenseDao {
+public class ExpenseListImpl implements ExpenseList {
 
     private List<Expense> expenses;  // Список расходов
-//!!!! private int quantity;
+    private int quantity;
 
-//!!! private LocalDate time;
+    private LocalDate time;
 
     // Конструктор, который загружает данные при инициализации
-    public FileExpenseDao() {
+    public ExpenseListImpl() {
 
         expenses = new ArrayList<>();
-        //this.expenses = new ArrayList<>();
-        // this.quantity = 0;
+        this.expenses = new ArrayList<>();
+        this.quantity = 0;
 
     }
 
     @Override
     public boolean addExpense(Expense expense) {
-         //  !!!if(expense == null || expenses.contains(expense)){
-        //            return false;
-        //        }
-        //
+        if(expense == null || expenses.contains(expense)){
+                    return false;
+               }
+
         // Добавление расхода в список
         expenses.add(expense);
-        //!!!quantity = expenses.size();
-        //!!!return true;
+        quantity = expenses.size();
+        return true;
     }
 
     @Override
-    public int removeExpense(int id) { //!!!! expenseNumber сделать как в ToDoList
-        // Удаление расхода по id
+    public int removeExpense(int  expenseNumber) {
+        // Удаление расхода
         Iterator<Expense> iterator = expenses.iterator();
         while (iterator.hasNext()) {
             Expense expense = iterator.next();
-            if (expense.getId() == id) {
+            if (expense.getId() == expenseNumber) {
                 iterator.remove();
                 return 1;  // Удалили один элемент
             }
         }
-        return 0;  // Если расход с таким id не найден
+        return 0;  // Если расход не найден
     }
 
     @Override
-    public Expense update(int id, Expense newExpense) { //!!int expenseNumber, sum
+    public Expense update(int expenseNumber,double amount) {
         // Обновление расхода по id
         for (int i = 0; i < expenses.size(); i++) {
             Expense expense = expenses.get(i);
-            if (expense.getId() == id) { //!! expenseNumber - 1
-                expenses.set(i, newExpense); // expenses.sum(sum);
-                return newExpense;//expenses.getId(expenseNumber)
+            if (expense.getId() == expenseNumber - 1) {
+                expenses.set(expenses.amount(amount));
+                return expenses.getId(expenseNumber);
             }
         }
-        return null;  // Если расход с таким id не найден
+        return null;  // Если расход  не найден
     }
 
     @Override
@@ -71,11 +71,11 @@ public class FileExpenseDao implements ExpenseDao {
     }
 
     @Override
-    public void printExpense(Expense expense) { //Это печать 1 затраты. Надо сделать всего листа
+    public void printExpense(Expense expense) {
         // Печать информации о расходе
         System.out.println("Expense ID: " + expense.getId() +
                 ", Type: " + expense.getType() +
-                ", Amount: " + expense.getAmount() + //sum
+                ", Amount: " + expense.getAmount() +
                 ", Date: " + expense.getDate());
     }
 
