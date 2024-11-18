@@ -14,8 +14,6 @@ public interface ExpenseList {
     // Удаление расхода
     int removeExpense(int expenseNumber);
 
-    // Обновление расхода
-    Expense update(int expenseNumber, double amount);
 
     // Получение количества расходов
     int quantity();
@@ -30,8 +28,8 @@ public interface ExpenseList {
     double expenseByDateRange(LocalDate from, LocalDate to);
 
     // Сохранение списка расходов в файл
-    void saveTasks(String fileName);
+    void SaveExpenses(String fileName);
 
     // Загрузка списка расходов из файла
-    void loadTasks(String fileName);
+    void LoadExpenses(String fileName);
 }
