@@ -5,22 +5,22 @@ import model.Expense;
 
 import java.time.LocalDate;
 
-public interface ExpenseDao {
+public interface ExpenseDao { //!!!ExpenseList
 
     // Добавление нового расхода
     boolean addExpense(Expense expense);
 
     // Удаление расхода по ID
-    int removeExpense(int id);
+    int removeExpense(int id); //(int expenseNumber)
 
     // Обновление расхода по ID
-    Expense update(int id, Expense newExpense);
+    Expense update(int id, Expense newExpense); //!!!(int expenseNumber, sum)
 
     // Получение количества расходов
     int quantity();
 
     // Печать информации о расходе
-    void printExpense(Expense expense);
+    void printExpense(Expense expense); //!!! void printExpenses()
 
     // Получение суммы расходов по категории
     double expensesByCategory(String type);

@@ -8,24 +8,37 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+//!!!ExpenseListImpl
 public class FileExpenseDao implements ExpenseDao {
 
     private List<Expense> expenses;  // Список расходов
+//!!!! private int quantity;
+
+//!!! private LocalDate time;
 
     // Конструктор, который загружает данные при инициализации
     public FileExpenseDao() {
+
         expenses = new ArrayList<>();
+        //this.expenses = new ArrayList<>();
+        // this.quantity = 0;
+
     }
 
     @Override
     public boolean addExpense(Expense expense) {
+         //  !!!if(expense == null || expenses.contains(expense)){
+        //            return false;
+        //        }
+        //
         // Добавление расхода в список
-        return expenses.add(expense);
+        expenses.add(expense);
+        //!!!quantity = expenses.size();
+        //!!!return true;
     }
 
     @Override
-    public int removeExpense(int id) {
+    public int removeExpense(int id) { //!!!! expenseNumber сделать как в ToDoList
         // Удаление расхода по id
         Iterator<Expense> iterator = expenses.iterator();
         while (iterator.hasNext()) {
@@ -39,13 +52,13 @@ public class FileExpenseDao implements ExpenseDao {
     }
 
     @Override
-    public Expense update(int id, Expense newExpense) {
+    public Expense update(int id, Expense newExpense) { //!!int expenseNumber, sum
         // Обновление расхода по id
         for (int i = 0; i < expenses.size(); i++) {
             Expense expense = expenses.get(i);
-            if (expense.getId() == id) {
-                expenses.set(i, newExpense);
-                return newExpense;
+            if (expense.getId() == id) { //!! expenseNumber - 1
+                expenses.set(i, newExpense); // expenses.sum(sum);
+                return newExpense;//expenses.getId(expenseNumber)
             }
         }
         return null;  // Если расход с таким id не найден
@@ -58,11 +71,11 @@ public class FileExpenseDao implements ExpenseDao {
     }
 
     @Override
-    public void printExpense(Expense expense) {
+    public void printExpense(Expense expense) { //Это печать 1 затраты. Надо сделать всего листа
         // Печать информации о расходе
         System.out.println("Expense ID: " + expense.getId() +
                 ", Type: " + expense.getType() +
-                ", Amount: " + expense.getAmount() +
+                ", Amount: " + expense.getAmount() + //sum
                 ", Date: " + expense.getDate());
     }
 

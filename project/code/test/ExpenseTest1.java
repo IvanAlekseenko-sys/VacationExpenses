@@ -26,7 +26,7 @@ import static assertTrue;
 
                 @BeforeEach
                 public void setUp() {
-                        expense = new Expense();
+                        expense = new Expense(); //!!! Нужно еще как минимум 1 затраты для проверки суммирования
                         expense.addExpense(new Expense(1, "Food", 50.0, LocalDate.of(2024, 1, 15)));
                         expense.addExpense(new Expense(2, "Transport", 20.0, LocalDate.of(2024, 1, 16)));
                         expense.addExpense(new Expense(3, "Entertainment", 100.0, LocalDate.of(2024, 1, 17)));
@@ -34,13 +34,13 @@ import static assertTrue;
                 //Cоздаем новый объект Expence для категории "excursions" с суммой 200.0.
                 @Test
                 public void testAddExpense() {
-                        Expense newExpense = new Expense(4, "excursions", 200.0, LocalDate.of(2024, 1, 18));
+                        Expense newExpense = new Expense(4, "excursions", 200.0, LocalDate.of(2024, 1, 18)); //!!!!! assertFalse(toDoList.addTask(null));
                         assertTrue(expense.addExpense(newExpense));
                         assertEquals(4, expense.quantity());
                 }
 
                 @Test
-                public void testRemoveExpense() {
+                public void testRemoveExpense() { //у нас удаление по expenseNumber
                         Expense expenseToRemove = new Expense(1, "Food", 50.0, LocalDate.of(2024, 1, 15));
                         assertTrue(expense.removeExpense(expenseToRemove));
                         assertEquals(2, expense.quantity());
@@ -58,7 +58,7 @@ import static assertTrue;
                 }
 
                 @Test
-                public void testPrintExpense() {
+                public void testPrintExpense() { //принтуем весь масив затрат
                         Expense expense = new Expense(1, "Food", 50.0, LocalDate.of(2024, 1, 15));
                         expense.printExpense(expense);
                 }
