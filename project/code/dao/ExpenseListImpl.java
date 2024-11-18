@@ -40,17 +40,16 @@ public class ExpenseListImpl implements ExpenseList {
     }
 
     @Override
-    public int removeExpense(int  expenseNumber) {
-        // Удаление расхода
-        Iterator<Expense> iterator = expenses.iterator();
-        while (iterator.hasNext()) {
-            Expense expense = iterator.next();
-            if (expense.getId() == expenseNumber) {
-                iterator.remove();
-                return 1;  // Удалили один элемент
-            }
+    public Expense removeExpense(int expenseNumber) {
+        if(expenseNumber >= 1 && expenseNumber <= quantity){
+            Expense victim = expenses.get(expenseNumber - 1);
+            expenses.remove(victim);
+            System.out.println("Expense: " + victim.getType() + " is removed.");
+            quantity--;
+            return victim;
         }
-        return 0;  // Если расход не найден
+        System.out.println("Wrong number of task.");
+        return null;
     }
 
 

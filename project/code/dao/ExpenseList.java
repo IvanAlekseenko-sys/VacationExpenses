@@ -12,8 +12,7 @@ public interface ExpenseList {
     boolean addExpense(Expense expense);
 
     // Удаление расхода
-    int removeExpense(int expenseNumber);
-
+    Expense removeExpense(int expenseNumber);
 
     // Получение количества расходов
     int quantity();
