@@ -8,7 +8,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-//!!!ExpenseListImpl
+import java.util.stream.IntStream;
+
+
 public class ExpenseListImpl implements ExpenseList {
 
     private List<Expense> expenses;  // Список расходов
@@ -51,18 +53,7 @@ public class ExpenseListImpl implements ExpenseList {
         return 0;  // Если расход не найден
     }
 
-    @Override
-    public Expense update(int expenseNumber,double amount) {
-        // Обновление расхода по id
-        for (int i = 0; i < expenses.size(); i++) {
-            Expense expense = expenses.get(i);
-            if (expense.getId() == expenseNumber - 1) {
-                expenses.set(expenses.amount(amount));
-                return expenses.getId(expenseNumber);
-            }
-        }
-        return null;  // Если расход  не найден
-    }
+
 
     @Override
     public int quantity() {
@@ -71,13 +62,12 @@ public class ExpenseListImpl implements ExpenseList {
     }
 
     @Override
-    public void printExpense(Expense expense) {
+    public void printExpenses() {
         // Печать информации о расходе
-        System.out.println("Expense ID: " + expense.getId() +
-                ", Type: " + expense.getType() +
-                ", Amount: " + expense.getAmount() +
-                ", Date: " + expense.getDate());
+        IntStream.range(0, expenses.size())
+                .forEach(i -> System.out.println((i + 1) + ". " + expenses.get(i)));
     }
+
 
     @Override
     public double expensesByCategory(String type) {
@@ -98,7 +88,7 @@ public class ExpenseListImpl implements ExpenseList {
     }
 
     @Override
-    public void saveTasks(String fileName) {
+    public void SaveExpenses(String fileName) {
         // Сохранение списка расходов в файл с помощью сериализации
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
             out.writeObject(expenses); // Сохраняем список расходов
@@ -109,8 +99,8 @@ public class ExpenseListImpl implements ExpenseList {
     }
 
     @Override
-    public void loadTasks(String fileName) {
-        // Загрузка списка расходов из файла с помощью десериализации
+    public void LoadExpenses(String fileName) {
+// Загрузка списка расходов из файла с помощью десериализации
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
             expenses = (List<Expense>) in.readObject(); // Загружаем список расходов из файла
             System.out.println("Expenses loaded successfully from file: " + fileName);
@@ -118,4 +108,7 @@ public class ExpenseListImpl implements ExpenseList {
             System.err.println("Error loading tasks from file: " + e.getMessage());
         }
     }
-}
+
+
+    }
+
