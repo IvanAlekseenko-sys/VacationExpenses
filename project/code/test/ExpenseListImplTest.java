@@ -39,15 +39,13 @@ class ExpenseListImplTest {
     @Test
     void testAddExpense() {
         // пытаемся добавить null
-        assertFalse(expenses.addExpense(
-                null));
+        assertFalse(expenses.addExpense(null));
         // Проверка на дубликаты
-        assertFalse(expenses.addExpense(
-                new Expense( "Meals", 150.0,now.minusDays(15)))); //добавили новый Expense
+        assertFalse(expenses.addExpense(new Expense( "Meals", 150.0,now.minusDays(15)))); //добавили новый Expense
         // Проверяем, что расходы добавлены правильно
+        assertEquals(5, expenses.quantity(), "Expense :  5");
+        assertTrue(expenses.addExpense(new Expense( "Meals", 140.0,now.minusDays(15))));
         assertEquals(6, expenses.quantity(), "Expense :  6");
-
-
     }
 
     @Test
@@ -91,7 +89,7 @@ class ExpenseListImplTest {
     public void testSaveAndLoad() {
         expenses.SaveExpenses("expensesTest.txt");
         expenses.LoadExpenses("expensesTest.txt");
-        assertEquals(3, expenses.quantity());
+        assertEquals(5, expenses.quantity());
     }
 
 
