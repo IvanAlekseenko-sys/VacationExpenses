@@ -2,10 +2,11 @@ package model;
 
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-    public class Expense implements Comparable <Expense>{
+    public class Expense implements Comparable <Expense>, Serializable {
 
         private int id;
         private String type;
