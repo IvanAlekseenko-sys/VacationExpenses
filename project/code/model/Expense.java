@@ -6,26 +6,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-    public class Expense implements Comparable <Expense>, Serializable {
+    public class  Expense implements Comparable <Expense>, Serializable {
 
-        private int id;
+
         private String type;
-        private double sum;
+        private double amount;
         private LocalDate date;
 
-        public Expense(int id, String type, double sum, LocalDate date) {
-            this.id = id;
+        public Expense(String type, double amount, LocalDate date) {
             this.type = type;
-            this.sum = sum;
+            this.amount = amount;
             this.date = date;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
         }
 
         public String getType() {
@@ -36,12 +27,12 @@ import java.util.Objects;
             this.type = type;
         }
 
-        public double getSum() {
-            return sum;
+        public double getAmount() {
+            return amount;
         }
 
-        public void setSum(double sum) {
-            this.sum = sum;
+        public void setAmount(double amount) {
+            this.amount = amount;
         }
 
         public LocalDate getDate() {
@@ -56,32 +47,26 @@ import java.util.Objects;
         public boolean equals(Object o) {
             if (this == o) return true;
             if (!(o instanceof Expense expense)) return false;
-            return id == expense.id && Objects.equals(date, expense.date);
+            return Double.compare(amount, expense.amount) == 0 && Objects.equals(type, expense.type) && Objects.equals(date, expense.date);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(id, date);
+            return Objects.hash(type, amount, date);
         }
 
         @Override
         public String toString() {
             final StringBuilder sb = new StringBuilder("Expense{");
-            sb.append("id=").append(id);
-            sb.append(", type='").append(type).append('\'');
-            sb.append(", sum=").append(sum);
+            sb.append("type='").append(type).append('\'');
+            sb.append(", amount=").append(amount);
             sb.append(", date=").append(date);
             sb.append('}');
             return sb.toString();
         }
-
         @Override
         public int compareTo(Expense o) {
-
-            return Integer.compare(this.id, o.id);
+            return this.date.compareTo(o.date);
         }
 
     }
-
-
-
