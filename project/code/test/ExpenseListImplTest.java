@@ -92,5 +92,14 @@ class ExpenseListImplTest {
         assertEquals(5, expenses.quantity());
     }
 
+//    @Test
+//    void testAddExpenseWithInvalidAmount() {
+//        ExpenseListImpl expenses = new ExpenseListImpl();
+//
+//        // Пытаемся создать расход с некорректной суммой
+//        assertThrows(NumberFormatException.class, () -> {
+//            new Expense("Meals", Double.parseDouble("InvalidAmount"), LocalDate.now());
+//        });
+//    }
 
 }
