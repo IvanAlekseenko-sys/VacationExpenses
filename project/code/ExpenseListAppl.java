@@ -12,7 +12,7 @@ public class ExpenseListAppl {
 
     public static void main(String[] args) {
         // greeting
-        System.out.println("Welcome to ExpensesList Application!");
+        System.out.println("Добро пожаловать в приложение для учета расходов!");//"Welcome to ExpensesList Application!"
 
         ExpenseListImpl expenseList = new ExpenseListImpl (); // object
         LocalDate now = LocalDate.now();
@@ -21,10 +21,10 @@ public class ExpenseListAppl {
 
 // Загрузка задач при запуске
         if (Files.exists(Path.of(FILE_NAME))) { // Проверяем, существует ли файл
-            System.out.println("Loading existing Expense...");
+            System.out.println("Загрузка существующих расходов...");//"Loading existing Expense..."
             expenseList.loadExpenses(FILE_NAME);
         } else {
-            System.out.println("No existing Expense found. Starting fresh.");
+            System.out.println("Не найдено существующих расходов. Начинаем с чистого листа.");//"No existing Expense found. Starting fresh."
         }
 
 
@@ -70,10 +70,10 @@ public class ExpenseListAppl {
                         case 2 -> type = "Питание";
                         case 3 -> type = "Развлечения";
                         case 4 -> type = "Экскурсии";
-                        default -> throw new IllegalStateException("Unexpected value: " + expenseTypeChoice);
+                        default -> throw new IllegalStateException("Unexpected value: " + expenseTypeChoice);//"Unexpected value: "
                     }
 
-                    System.out.println("Input sum: ");
+                    System.out.println("Введите сумму: ");//"Input sum: "
                     while (!scanner.hasNextDouble()) {
                         System.out.println("Ошибка: введите корректное значение суммы.");
                         scanner.next(); // пропустить некорректный ввод
@@ -86,32 +86,32 @@ public class ExpenseListAppl {
                 }
 
                 case 2: {
-                    System.out.println("Your Expense: ");
+                    System.out.println("Ваши расходы: ");
                     expenseList.printExpenses();
                     break;
                 }
                 case 3: {
-                    System.out.println("Input Expense number to remove: ");
+                    System.out.println("Введите номер расхода для удаления: ");//"Input Expense number to remove: "
                     int ExpenseNumber = scanner.nextInt();
                     expenseList.removeExpense(ExpenseNumber);
                     break;
                 }
                 case 4: {
-                    System.out.println("Saving... ");
+                    System.out.println("Сохраняю... ");//"Saving... "
                     // call method
                     expenseList.saveExpenses(FILE_NAME);
                     break;
                 }
                 case 5:{
                     // call method
-                    System.out.println("Loading... ");
+                    System.out.println("Загрузка... ");//"Loading... "
                     expenseList.loadExpenses(FILE_NAME);
                     break;
                 }
                 case 6:
                     return;
                 default: {
-                    System.out.println("Wrong input.");
+                    System.out.println("Неверный ввод.");//"Wrong input."
                 }
             }
         }
