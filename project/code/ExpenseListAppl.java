@@ -30,6 +30,7 @@ public class ExpenseListAppl {
 
         // начало цикла
         while (true) {
+            System.out.println();
             Menu.printMenu(); // статический метод вызывается по имени класса
 // ask choice
             System.out.print("Введите ваш выбор: ");
