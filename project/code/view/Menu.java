@@ -3,9 +3,9 @@ package view;
 import java.io.Serializable;
 
 public enum Menu implements Serializable {
-    ADD(1, "Add expenses"), LIST(2, "List of expenses"), REMOVE(3, "Remove expenses"), CATEGORY_REPORT(4,
-            "Category_report"), TIME_REPORT(5,"Time_report"),
-    SAVE(6, "Save"), LOAD(7, "Load"), EXIT(8, "Exit");
+    ADD(1, "Добавить расходы"), LIST(2, "Список расходов"), REMOVE(3, "Удаление расхода"), CATEGORY_REPORT(4,
+            "Отчет по категории"), TIME_REPORT(5,"Отчет по временному промежутку"),
+    SAVE(6, "Сохранить"), LOAD(7, "Загрузить"), EXIT(8, "Выход");
 
 
     //fields
