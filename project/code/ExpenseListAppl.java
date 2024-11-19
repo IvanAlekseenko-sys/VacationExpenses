@@ -168,7 +168,7 @@ public class ExpenseListAppl {
                 case 8:
                     return;
                 default: {
-                    System.out.println("Невереный ввод");
+                    System.out.println("Неверный ввод");
                 }
             }
         }
