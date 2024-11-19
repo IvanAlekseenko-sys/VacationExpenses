@@ -66,19 +66,49 @@ public class ExpenseListAppl {
                     expenseList.removeExpense(ExpenseNumber);
                     break;
                 }
-                case 4: {
+                case 4: {}
+                scanner.nextLine(); // Очистка после считывания номера меню
+                System.out.println("Введите категорию для необходимого отчета: ");
+                String type = scanner.nextLine(); // Считываем категорию
+
+                // Вызов метода для получения суммы расходов по категории
+                double totalByCategory = expenseList.expensesByCategory(type);
+
+                // Вывод отчета
+                System.out.printf("Общие расходы по категории '%s' составляют: %.2f%n", type, totalByCategory);
+                break;
+
+                case 5: {}
+                // Ввод промежутка времени
+                scanner.nextLine(); // Очистка после ввода числа
+                System.out.println("Отчет за промежуток времени. Введите дату от (в формате yyyy-MM-dd): ");
+                String fromDateString = scanner.nextLine(); // Ввод строки для даты начала
+                LocalDate from = LocalDate.parse(fromDateString); // Преобразование в LocalDate
+
+                System.out.println("Введите дату до (в формате yyyy-MM-dd): ");
+                String toDateString = scanner.nextLine(); // Ввод строки для даты конца
+                LocalDate to = LocalDate.parse(toDateString); // Преобразование в LocalDate
+
+                // Вызов метода для расчета затрат
+                double totalExpenses = expenseList.expenseByDateRange(from, to);
+
+                // Вывод отчета
+                System.out.printf("Общие расходы с %s по %s составляют: %.2f%n", from, to, totalExpenses);
+                break;
+
+                case 6: {
                     System.out.println("Saving... ");
                     // call method
                     expenseList.saveExpenses(FILE_NAME);
                     break;
                 }
-                case 5:{
+                case 7:{
                     // call method
                     System.out.println("Loading... ");
                     expenseList.loadExpenses(FILE_NAME);
                     break;
                 }
-                case 6:
+                case 8:
                     return;
                 default: {
                     System.out.println("Wrong input.");
