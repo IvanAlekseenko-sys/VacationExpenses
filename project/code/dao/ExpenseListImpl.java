@@ -62,9 +62,14 @@ public class ExpenseListImpl implements ExpenseList {
 
     @Override
     public void printExpenses() {
-        // Печать информации о расходе
-        IntStream.range(0, expenses.size())
-                .forEach(i -> System.out.println((i + 1) + ". " + expenses.get(i)));
+        // Проверяем, пуст ли список расходов
+        if (expenses.isEmpty()) {
+            System.out.println("Ваш список затрат пуст");
+        } else {
+            // Печать информации о расходе
+            IntStream.range(0, expenses.size())
+                    .forEach(i -> System.out.println((i + 1) + ". " + expenses.get(i)));
+        }
     }
 
 
