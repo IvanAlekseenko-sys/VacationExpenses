@@ -44,11 +44,11 @@ public class ExpenseListImpl implements ExpenseList {
         if(expenseNumber >= 1 && expenseNumber <= quantity){
             Expense victim = expenses.get(expenseNumber - 1);
             expenses.remove(victim);
-            System.out.println("Expense: " + victim.getType() + " is removed.");
+            System.out.println("Расход: " + victim.getType() + " удален.");//("Расход: " + victim.getType() + " удален.")("Expense: " + victim.getType() + " is removed.")
             quantity--;
             return victim;
         }
-        System.out.println("Wrong number of Expense.");
+        System.out.println("Неверный номер расхода.");//"Wrong number of Expense."
         return null;
     }
 
@@ -91,9 +91,9 @@ public class ExpenseListImpl implements ExpenseList {
         // Сохранение списка расходов в файл с помощью сериализации
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
             out.writeObject(expenses); // Сохраняем список расходов
-            System.out.println("Expenses saved successfully to file: " + fileName);
+            System.out.println("Расходы успешно сохранены в файл: " + fileName);//"Expenses saved successfully to file: "
         } catch (IOException e) {
-            System.err.println("Error saving Expense to file: " + e.getMessage());
+            System.err.println("Ошибка при сохранении расходов в файл: " + e.getMessage());//"Error saving Expense to file: "
         }
     }
 
@@ -102,9 +102,9 @@ public class ExpenseListImpl implements ExpenseList {
 // Загрузка списка расходов из файла с помощью десериализации
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
             expenses = (List<Expense>) in.readObject(); // Загружаем список расходов из файла
-            System.out.println("Expenses loaded successfully from file: " + fileName);
+            System.out.println("Расходы успешно загружены из файла: " + fileName);//"Expenses loaded successfully from file: "
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error loading Expense from file: " + e.getMessage());
+            System.err.println("Ошибка при загрузке расходов из файла: " + e.getMessage());//"Error loading Expense from file: "
         }
         quantity = expenses.size();
     }
