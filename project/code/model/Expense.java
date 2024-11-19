@@ -57,11 +57,11 @@ import java.util.Objects;
 
         @Override
         public String toString() {
-            final StringBuilder sb = new StringBuilder("Expense{");
-            sb.append("type='").append(type).append('\'');
-            sb.append(", amount=").append(amount);
-            sb.append(", date=").append(date);
-            sb.append('}');
+            final StringBuilder sb = new StringBuilder();
+            sb.append("Категория: '").append(type).append('\'');
+            sb.append(", сумма затрат ").append(amount);
+            sb.append(", дата ").append(date);
+
             return sb.toString();
         }
         @Override

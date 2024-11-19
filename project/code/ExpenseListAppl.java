@@ -30,6 +30,7 @@ public class ExpenseListAppl {
 
         // начало цикла
         while (true) {
+            System.out.println();
             Menu.printMenu(); // статический метод вызывается по имени класса
 // ask choice
             System.out.print("Введите ваш выбор: ");
@@ -168,7 +169,7 @@ public class ExpenseListAppl {
                 case 8:
                     return;
                 default: {
-                    System.out.println("Невереный ввод");
+                    System.out.println("Неверный ввод");
                 }
             }
         }
