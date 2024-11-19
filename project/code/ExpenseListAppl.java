@@ -45,16 +45,46 @@ public class ExpenseListAppl {
             switch (choice) {
                 case 1: {
                     scanner.nextLine();
-                    System.out.println("Input type: "); // добавить описание правильного написания типов затрат
-                    String type = scanner.nextLine();
+                    System.out.println("Выберите тип ваших затрат:");
+                    System.out.println("1 - Трансферы");
+                    System.out.println("2 - Питание");
+                    System.out.println("3 - Развлечения");
+                    System.out.println("4 - Экскурсии");
+
+                    int expenseTypeChoice;
+                    while (true) {
+                        System.out.print("Введите номер: ");
+                        if (scanner.hasNextInt()) {
+                            expenseTypeChoice = scanner.nextInt();
+                            if (expenseTypeChoice >= 1 && expenseTypeChoice <= 4) {
+                                break; // корректный выбор
+                            }
+                        }
+                        System.out.println("Ошибка: введите число от 1 до 4.");
+                        scanner.nextLine(); // очистить ввод
+                    }
+
+                    String type;
+                    switch (expenseTypeChoice) {
+                        case 1 -> type = "Трансферы";
+                        case 2 -> type = "Питание";
+                        case 3 -> type = "Развлечения";
+                        case 4 -> type = "Экскурсии";
+                        default -> throw new IllegalStateException("Unexpected value: " + expenseTypeChoice);
+                    }
+
                     System.out.println("Input sum: ");
-                    Double sum = scanner.nextDouble();
+                    while (!scanner.hasNextDouble()) {
+                        System.out.println("Ошибка: введите корректное значение суммы.");
+                        scanner.next(); // пропустить некорректный ввод
+                    }
+                    double sum = scanner.nextDouble();
 
-                    Expense e = new Expense(type,sum,now);
-
+                    Expense e = new Expense(type, sum, now);
                     expenseList.addExpense(e);
                     break;
                 }
+
                 case 2: {
                     System.out.println("Your Expense: ");
                     expenseList.printExpenses();
