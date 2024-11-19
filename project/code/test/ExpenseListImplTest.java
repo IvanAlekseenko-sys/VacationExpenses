@@ -87,8 +87,8 @@ class ExpenseListImplTest {
 
     @Test
     public void testSaveAndLoad() {
-        expenses.SaveExpenses("expensesTest.txt");
-        expenses.LoadExpenses("expensesTest.txt");
+        expenses.saveExpenses("expensesTest.txt");
+        expenses.loadExpenses("expensesTest.txt");
         assertEquals(5, expenses.quantity());
     }
 

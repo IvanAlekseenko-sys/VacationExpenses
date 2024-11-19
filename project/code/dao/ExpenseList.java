@@ -27,8 +27,8 @@ public interface ExpenseList {
     double expenseByDateRange(LocalDate from, LocalDate to);
 
     // Сохранение списка расходов в файл
-    void SaveExpenses(String fileName);
+    void saveExpenses(String fileName);
 
     // Загрузка списка расходов из файла
-    void LoadExpenses(String fileName);
+    void loadExpenses(String fileName);
 }

@@ -48,7 +48,7 @@ public class ExpenseListImpl implements ExpenseList {
             quantity--;
             return victim;
         }
-        System.out.println("Wrong number of task.");
+        System.out.println("Wrong number of Expense.");
         return null;
     }
 
@@ -87,25 +87,26 @@ public class ExpenseListImpl implements ExpenseList {
     }
 
     @Override
-    public void SaveExpenses(String fileName) {
+    public void saveExpenses(String fileName) {
         // Сохранение списка расходов в файл с помощью сериализации
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))) {
             out.writeObject(expenses); // Сохраняем список расходов
             System.out.println("Expenses saved successfully to file: " + fileName);
         } catch (IOException e) {
-            System.err.println("Error saving tasks to file: " + e.getMessage());
+            System.err.println("Error saving Expense to file: " + e.getMessage());
         }
     }
 
     @Override
-    public void LoadExpenses(String fileName) {
+    public void loadExpenses(String fileName) {
 // Загрузка списка расходов из файла с помощью десериализации
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
             expenses = (List<Expense>) in.readObject(); // Загружаем список расходов из файла
             System.out.println("Expenses loaded successfully from file: " + fileName);
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error loading tasks from file: " + e.getMessage());
+            System.err.println("Error loading Expense from file: " + e.getMessage());
         }
+        quantity = expenses.size();
     }
 
 
