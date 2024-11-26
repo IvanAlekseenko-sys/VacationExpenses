@@ -27,6 +27,7 @@ public class ExpenseListImpl implements ExpenseList {
 
     }
 
+
     @Override
     public boolean addExpense(Expense expense) {
         if(expense == null || expenses.contains(expense)){
@@ -37,6 +38,19 @@ public class ExpenseListImpl implements ExpenseList {
         expenses.add(expense);
         quantity = expenses.size();
         return true;
+    }
+
+    @Override
+    public Expense updateExpense(int expenseNumber, String newType, double newAmount) {
+        if(expenseNumber >= 1 && expenseNumber <= quantity){
+            Expense update = expenses.get(expenseNumber - 1);
+            update.setType(newType);
+            update.setAmount(newAmount);
+            System.out.println("Затрата # " + expenseNumber + " была изменена:" + expenses.get(expenseNumber - 1).toString() );
+            return update;
+        }
+        System.out.println("Неверный номер расхода.");//"Wrong number of Expense."
+        return null;
     }
 
     @Override
@@ -114,6 +128,14 @@ public class ExpenseListImpl implements ExpenseList {
         quantity = expenses.size();
     }
 
-
+    @Override
+    public Expense get(int index) {
+        if (index >= 0 && index < expenses.size()) {
+            return expenses.get(index);
+        }
+        return null; // Возвращаем null, если индекс вне диапазона
     }
+
+
+}
 

@@ -11,6 +11,9 @@ public interface ExpenseList {
     // Добавление нового расхода
     boolean addExpense(Expense expense);
 
+    // Изменения расхода
+    Expense updateExpense( int expenseNumber, String newType, double newAmount);
+
     // Удаление расхода
     Expense removeExpense(int expenseNumber);
 
@@ -31,4 +34,7 @@ public interface ExpenseList {
 
     // Загрузка списка расходов из файла
     void loadExpenses(String fileName);
+
+    Expense get(int index);
+
 }
