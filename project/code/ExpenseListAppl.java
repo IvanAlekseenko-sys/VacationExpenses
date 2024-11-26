@@ -19,7 +19,7 @@ public class ExpenseListAppl {
         Scanner scanner = new Scanner(System.in);
 
 
-// Загрузка задач при запуске
+        // Загрузка задач при запуске
         if (Files.exists(Path.of(FILE_NAME))) { // Проверяем, существует ли файл
             System.out.println("Загрузка существующих расходов...");
             expenseList.loadExpenses(FILE_NAME);
@@ -32,9 +32,9 @@ public class ExpenseListAppl {
         while (true) {
             System.out.println();
             Menu.printMenu(); // статический метод вызывается по имени класса
-// ask choice
+            // ask choice
             System.out.print("Введите ваш выбор: ");
-// Проверка на корректный ввод числа
+            // Проверка на корректный ввод числа
             while (!scanner.hasNextInt()) {
                 System.out.println("Ошибка: введите целое число для выбора.");
                 scanner.next(); // пропустить некорректный ввод
@@ -92,12 +92,60 @@ public class ExpenseListAppl {
                     break;
                 }
                 case 3: {
+                    System.out.println("Введите номер расхода, который хотите изменить: ");
+                    int expenseNumber = scanner.nextInt(); // номер расхода для изменения
+
+                    // Запрашиваем новый тип расходов
+                    System.out.println("Выберите новый тип расходов:");
+                    System.out.println("1 - Трансферы");
+                    System.out.println("2 - Питание");
+                    System.out.println("3 - Развлечения");
+                    System.out.println("4 - Экскурсии");
+
+                    int newExpenseTypeChoice;
+                    while (true) {
+                        System.out.print("Введите номер: ");
+                        if (scanner.hasNextInt()) {
+                            newExpenseTypeChoice = scanner.nextInt();
+                            if (newExpenseTypeChoice >= 1 && newExpenseTypeChoice <= 4) {
+                                break; // корректный выбор
+                            }
+                        }
+                        System.out.println("Ошибка: введите число от 1 до 4.");
+                        scanner.nextLine(); // очистить ввод
+                    }
+
+                    String newType;
+                    switch (newExpenseTypeChoice) {
+                        case 1 -> newType = "Трансферы";
+                        case 2 -> newType = "Питание";
+                        case 3 -> newType = "Развлечения";
+                        case 4 -> newType = "Экскурсии";
+                        default -> throw new IllegalStateException("Unexpected value: " + newExpenseTypeChoice);
+                    }
+
+                    // Запрашиваем новую сумму
+                    System.out.println("Введите новую сумму: ");
+                    while (!scanner.hasNextDouble()) {
+                        System.out.println("Ошибка: введите корректное значение суммы.");
+                        scanner.next(); // пропустить некорректный ввод
+                    }
+                    double newSum = scanner.nextDouble();
+
+                    // Обновляем информацию о расходе
+                    expenseList.updateExpense(expenseNumber, newType, newSum);
+
+                    System.out.println("Расход обновлен успешно!");
+                    break;
+                }
+
+                case 4: {
                     System.out.println("Введите номер расхода для удаления: ");
                     int ExpenseNumber = scanner.nextInt();
                     expenseList.removeExpense(ExpenseNumber);
                     break;
                 }
-                case 4: {
+                case 5: {
 
                     System.out.println("Выберите категорию для отчета:");
                     System.out.println("1 - Трансферы");
@@ -135,7 +183,7 @@ public class ExpenseListAppl {
                     break;
                 }
 
-                case 5: {
+                case 6: {
                 // Ввод промежутка времени
                 scanner.nextLine(); // Очистка после ввода числа
                 System.out.println("Отчет за промежуток времени. Введите дату от (в формате yyyy-MM-dd): ");
@@ -154,19 +202,19 @@ public class ExpenseListAppl {
                 break;
                 }
 
-                case 6: {
+                case 7: {
                     System.out.println("Сохранение... ");
                     // call method
                     expenseList.saveExpenses(FILE_NAME);
                     break;
                 }
-                case 7:{
+                case 8:{
                     // call method
                     System.out.println("Загрузка... ");
                     expenseList.loadExpenses(FILE_NAME);
                     break;
                 }
-                case 8:
+                case 9:
                     return;
                 default: {
                     System.out.println("Неверный ввод");

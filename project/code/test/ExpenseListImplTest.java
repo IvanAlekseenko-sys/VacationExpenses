@@ -49,6 +49,18 @@ class ExpenseListImplTest {
     }
 
     @Test
+    void testUpdateExpense() {
+        expenses.updateExpense(1, "Transfers",111 );
+        // Проверка, что количество расходов не изменилось (если не добавляется новый расход)
+        assertEquals(5, expenses.quantity());
+        // Проверка, что данные были правильно обновлены
+        Expense updatedExpense = expenses.get(0); // Получаем обновленный расход (первый элемент)
+        assertEquals("Transfers", updatedExpense.getType()); // Проверяем, что тип изменился на "Transfers"
+        assertEquals(111, updatedExpense.getAmount()); // Проверяем, что сумма изменилась на 111, с допуском для погрешности
+
+    }
+
+    @Test
     void testRemoveExpense() {
         //удаляем  расход м номером 1
         expenses.removeExpense(1);
